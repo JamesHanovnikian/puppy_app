@@ -14,4 +14,15 @@ class PuppiesController < ApplicationController
     puppies = Puppy.all
     render json: puppies.as_json
   end
+
+  def show
+    puppy = Puppy.find_by(id: params[:id])
+    render json: puppy.as_json
+  end
+
+  def destroy
+    puppy = Puppy.find_by(id: params[:id])
+    puppy.destroy 
+    render json: {"The puppy has been deleted from the database!"}
+  end
 end
